@@ -2,17 +2,18 @@
 
 var crypto = require("crypto");
 var Promise = require("bluebird");
-var DOMAIN = "https://staging.anypay.io";
+var DOMAIN = "https://anypay.io";
 var superagent = require("superagent");
 var http = Promise.promisifyAll(superagent);
 
 var Client = function Client(options) {
   this.accessKeyId = options.accessKeyId;
   this.secretAccessKey = options.secretAccessKey;
+  this.domain = options.domain || DOMAIN;
 };
 
 Client.prototype.createInvoice = function (options) {
-  return http.post(DOMAIN + "/api/invoices").auth(this.accessKeyId, this.sign(options)).send(options).endAsync();
+  return http.post(this.domain + "/api/invoices").auth(this.accessKeyId, this.sign(options)).send(options).endAsync();
 };
 
 Client.prototype.sign = function (json) {

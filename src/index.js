@@ -1,19 +1,20 @@
 var crypto     = require('crypto')
 var Promise    = require('bluebird')
-var DOMAIN     = 'https://staging.anypay.io'
+var DOMAIN     = 'https://anypay.io'
 var superagent = require('superagent')
 var http       = Promise.promisifyAll(superagent)
 
 class Client {
 
   constructor(options) {
-    this.accessKeyId = options.accessKeyId
+    this.accessKeyId     = options.accessKeyId
     this.secretAccessKey = options.secretAccessKey
+    this.domain          = options.domain || DOMAIN
   }
 
   createInvoice(options) {
     return http
-      .post(DOMAIN+'/api/invoices')
+      .post(this.domain+'/api/invoices')
       .auth(this.accessKeyId, this.sign(options))
       .send(options)
       .endAsync()
