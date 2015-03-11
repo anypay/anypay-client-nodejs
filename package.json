@@ -25,6 +25,9 @@
   },
   "dependencies": {
     "bluebird": "^2.5.3",
-    "superagent": "^0.21.0"
+    "superagent": "^0.21.0",
+    "gulp-browserify": "^0.5.1",
+    "superagent": "^0.21.0",
+    "superagent-browserify": "0.0.2"
   }
 }

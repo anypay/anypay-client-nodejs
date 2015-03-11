@@ -16,6 +16,18 @@ class Client {
     return http
       .post(this.domain+'/api/invoices')
       .auth(this.accessKeyId, this.sign(options))
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .withCredentials()
+      .send(options)
+      .endAsync()
+  }
+
+  registerMerchant(options) {
+    return http
+      .post(this.domain+'/api/merchants')
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
       .send(options)
       .endAsync()
   }
