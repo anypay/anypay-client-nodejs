@@ -14,7 +14,7 @@ class Client {
 
   createInvoice(options) {
     return http
-      .post(this.domain+'/api/invoices')
+      .post(this.domain+'/invoices')
       .auth(this.accessKeyId, this.sign(options))
       .set('Accept', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
@@ -25,7 +25,7 @@ class Client {
 
   registerMerchant(options) {
     return http
-      .post(this.domain+'/api/merchants')
+      .post(this.domain+'/merchants')
       .set('Accept', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
       .send(options)
