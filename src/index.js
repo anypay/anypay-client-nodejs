@@ -1,6 +1,6 @@
 var crypto     = require('crypto')
 var Promise    = require('bluebird')
-var DOMAIN     = 'https://anypay.io'
+var DOMAIN     = 'https://api.anypay.io'
 var superagent = require('superagent')
 var http       = Promise.promisifyAll(superagent)
 
@@ -18,7 +18,7 @@ class Client {
       .auth(this.accessKeyId, this.sign(options))
       .set('Accept', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
-      .withCredentials()
+      //.withCredentials()
       .send(options)
       .endAsync()
   }
